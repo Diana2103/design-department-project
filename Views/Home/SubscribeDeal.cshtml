@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "SubscribeDeal";
+}
+
+<h2>Принять сделку</h2>
+
+@model NewProj.Models.Deal
+@using (Html.BeginForm("SaveSettings", "Home", FormMethod.Post))
+{
+    if (string.IsNullOrEmpty(ViewBag.Details.Customer))
+    {
+<fieldset>
+    @Html.HiddenFor(m => m.DealId)
+    @Html.HiddenFor(m => m.Owner)
+    @Html.HiddenFor(m => m.Price)
+    <p>
+        @Html.LabelFor(m => m.Customer, "Исполнитель")
+        <br />
+        @Html.EditorFor(m => m.Customer)
+
+    </p>
+    <p><input type="submit" value="Сохранить" /></p>
+</fieldset>
+    }
+    else
+    {
+        <p><a href="@Url.Action("Index", "Home")">Сделка уже у исполнителя, вернуться</a></p>
+    }
+}

@@ -1,0 +1,46 @@
+﻿<html>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Описание технического задания</th>
+                <th>Владелец</th>
+                <th>Бригада конструкторов</th>
+                <th>Стоимость проектирования и строительства</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var deal in ViewBag.Deals)
+            {
+                if (ViewBag.IsAdminSession)
+                {
+                    <tr>
+                        <td>@deal.DealName</td>
+                        <td>@deal.Owner</td>
+                        <td>@deal.Customer</td>
+                        <td>@deal.Price </td>
+                        <td><a href="@Url.Action("Settings", "Home", new { id = deal.DealId })">редактировать</a></td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>@deal.DealName</td>
+                        <td>@deal.Owner</td>
+                        <td>@deal.Customer</td>
+                        <td>@deal.Price </td>
+                        <td><a href="@Url.Action("SubscribeDeal", "Home", new { id = deal.DealId })">Подписаться</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    @if (ViewBag.IsAdminSession)
+    {
+        <div>
+            <a href="@Url.Action("CreateDeal", "Home")" class="btn btn-info" role="button">Создать сделку</a>
+        </div>
+    }
+</body>
+</html>

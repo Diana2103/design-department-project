@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "CreateDeal";
+}
+
+<h2>Создание сделки</h2>
+
+@model NewProj.Models.Deal
+@using (Html.BeginForm("SaveDeal", "Home", FormMethod.Post))
+{
+    <style>
+        .deal {
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        .deal > * {
+            width: 100%;
+        }
+    </style>
+    <div class="deal">
+        @Html.HiddenFor(m => m.DealId)
+        <p>
+            @Html.LabelFor(m => m.DealName, "Описание технического задания")
+            <br />
+            @Html.EditorFor(m => m.DealName)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Owner, "Владелец")
+            <br />
+            @Html.EditorFor(m => m.Owner)
+
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Customer, "Бригада конструкторов")
+            <br />
+            @Html.EditorFor(m => m.Customer)
+
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Price, "Стоимость проектирования и строительства")
+            <br />
+            @Html.EditorFor(m => m.Price)
+        </p>
+        <p><input type="submit" class="btn btn-primary" value="Создать" /></p>
+    </div>
+}
